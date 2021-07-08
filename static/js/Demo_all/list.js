@@ -179,8 +179,27 @@ $('.table-condensed').css("background-color","#d9edf7");  //设置背景色
 
 //绑定文章数据
 
-function BindingData() {
+function BindingData(articleInitPageNumber, favInitPageNumber, chosenInitPageNumber) {
     var textForSearch = searchText;// $("#txtSearchBox").val(); //搜索框
+
+    var articlePageNumber = 1;
+
+    if (typeof articleInitPageNumber === 'number'){
+        articlePageNumber = articleInitPageNumber;
+    }
+
+    var favPageNumber = 1;
+
+    if (typeof favInitPageNumber === 'number'){
+        favPageNumber = favInitPageNumber;
+    }
+
+    var chosenPageNumber = 1;
+
+    if (typeof chosenInitPageNumber === 'number'){
+        chosenPageNumber = chosenInitPageNumber;
+    }
+
     // 绑定 非重点 文章列表
     $('#data-table-article').bootstrapTable('destroy');
     $("#data-table-article").bootstrapTable({
@@ -191,7 +210,7 @@ function BindingData() {
         pageSize: 30,  //pagesize 每页条数
         pageList: [10,25,50,100],
         striped: true,
-        pageNumber:1, //current page 默认显示第几页
+        pageNumber: articlePageNumber, //current page 默认显示第几页
         search: false,  //search feature
         sidePagination: "server", //server pager
         width: "100%",
@@ -338,7 +357,7 @@ function BindingData() {
             align: "center",
             formatter: function (value, row, index, field) {
                 var display = "";
-                display = "<a class=\"btn btn-success\" href=\"javascript:UpdateListStatus(" + row.id + ",1)\"  style=\"font-size:15px;color:black\">加入重点</a>";
+                display = "<a class=\"btn btn-success\" href=\"javascript:UpdateListStatus(" + row.id + ",1," + pageNumber + "," + favPageNumber + "," + chosenPageNumber + ")\"  style=\"font-size:15px;color:black\">加入重点</a>";
                 return display;
             }
         }
@@ -374,7 +393,7 @@ function BindingData() {
         url: basicDomain + "articlelist_all/",
         pagination: true, //pager
         pageSize: 30,  //pagesize
-        pageNumber: 1, //current page
+        pageNumber: favPageNumber, //current page
         search: false,  //search feature
         sidePagination: "server", //server pager
         width: "100%",
@@ -519,8 +538,8 @@ function BindingData() {
             title: "操作",
             formatter: function (value, row, index, field) {
                 var display = "";
-                display = "<a class=\"btn btn-warning\" href=\"javascript:UpdateListStatus(" + row.id + ",0);\" style=\"font-size:15px;color:black;float:left;\">取消重点</a>";
-                display +=  "<a class=\"btn btn-success\" href=\"javascript:UpdateListStatus(" + row.id + ",2);\" style=\"font-size:15px;color:black;float:right;\">加入报告</a>";
+                display = "<a class=\"btn btn-warning\" href=\"javascript:UpdateListStatus(" + row.id + ",0," + articlePageNumber + "," + pageNumber + "," + chosenPageNumber + ");\" style=\"font-size:15px;color:black;float:left;\">取消重点</a>";
+                display +=  "<a class=\"btn btn-success\" href=\"javascript:UpdateListStatus(" + row.id + ",2," + articlePageNumber + "," + pageNumber + "," + chosenPageNumber + ");\" style=\"font-size:15px;color:black;float:right;\">加入报告</a>";
                 return display;
             }
         },
@@ -553,7 +572,7 @@ function BindingData() {
         url: basicDomain + "articlelist_all/",
         pagination: true, //pager
         pageSize: 30,  //pagesize
-        pageNumber: 1, //current page
+        pageNumber: chosenPageNumber, //current page
         search: false,  //search feature
         sidePagination: "server", //server pager
         width: "100%",
@@ -701,7 +720,7 @@ function BindingData() {
                 var display = "";
                 var current = new Date();
                 //if(row.article_pub_time )
-                display = "<a class=\"btn btn-warning\" href=\"javascript:UpdateListStatus(" + row.id + ",1);\" style=\"font-size:15px;color:black;float:left\">移出报告</a>";
+                display = "<a class=\"btn btn-warning\" href=\"javascript:UpdateListStatus(" + row.id + ",1," + articlePageNumber + "," + favPageNumber + "," + pageNumber + ");\" style=\"font-size:15px;color:black;float:left\">移出报告</a>";
                 display +=  "<a class=\"btn btn-success\" style=\"font-size:15px;color:black;float:right\" onclick=\"javascript:EditRow(" + row.id + ",'" + row.article_title + "','" + row.article_link_title + "','" + row.article_sub_title + "','" + row.article_author + "','" + row.article_paper_order + "','" + row.article_paper_order_name + "','" + row.article_column + "')\">编辑</a>";
                 //,'" + row.article_paper_order_name + "','" + row.article_column + "'
                 return display;
@@ -796,7 +815,7 @@ function OnSpecialNameChange(val) {
 //            操作执行 按钮响应方法
 //**********************************
 // 文章状态操作按钮
-function UpdateListStatus(id, targetStatus) {
+function UpdateListStatus(id, targetStatus, articlePageNumber, favPageNumber, chosenPageNumber) {
      $.ajax({
          url: basicDomain + "updateArticleStatus/",
          type: 'POST',
@@ -807,7 +826,7 @@ function UpdateListStatus(id, targetStatus) {
          success: function (data) {
             //console.log(data);
             
-            BindingData();
+            BindingData(articlePageNumber, favPageNumber, chosenPageNumber);
                 
          }
      });
@@ -817,7 +836,7 @@ function UpdateListStatus(id, targetStatus) {
 //文本搜索框后面的查询按钮
 function Searchclick(){
     searchText = $("#txtSearchBox").val();
-    BindingData();
+    BindingData(1,1,1);
 }
 //文本搜索框后面的刷新按钮
 function Refresh(){
@@ -837,7 +856,7 @@ function OnTextSearchButtonClick(val){
         searchText = val;
         $("#txtSearchBox").val(searchText);
     }   
-    BindingData(); 
+    BindingData(1,1,1); 
 }
 
 //---------------------------------------------------------
@@ -882,7 +901,7 @@ function UpdateRow(){
         },
         success: function (data) {
             $("#editRowModal").modal('hide');
-            BindingData();
+            BindingData(1,1,1);
         }
     });
 
