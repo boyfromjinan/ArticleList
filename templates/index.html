@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+
+<html class="lt-ie9 lt-ie8 lt-ie7" lang="en">
+
+<![endif]-->
+<!--[if IE 7]>
+
+<html class="lt-ie9 lt-ie8" lang="en">
+
+<![endif]-->
+<!--[if IE 8]>
+
+<html class="lt-ie9" lang="en">
+
+<![endif]-->
+<!--[if gt IE 8]>
+  <!-->
+
+{% load static %}
+<html lang="en">
+
+<!--
+<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>
+        《央媒看山东》选稿系统
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--[if lte IE 7]>
+    <script src="css/icomoon-font/lte-ie7.js">
+    </script>
+    <![endif]-->
+    <link rel="shortcut icon" href="#"/>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet"> <!-- Important. For Theming change primary-color variable in main.css  -->
+    <link href="{% static 'css/bootstrap-table.min.css' %}" rel="stylesheet" />
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.js' %}">
+    </script>
+    <script src="{% static 'js/jquery.dataTables.js' %}">
+    </script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-table.min.js' %}"></script>
+    
+    
+    <script type="text/javascript" src="{% static 'js/Demo_all/list.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-table-pagejump.css' %}">
+    <script src="{% static 'js/bootstrap-table-pagejump.js' %}"></script>
+
+    
+    <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.zh-CN.js' %}" charset="UTF-8"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/bootstrap-datetimepicker.css' %}">
+    <!--<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-editable.css' %}" >
+    <script src="{% static 'js/bootstrap-editable.js' %}"></script>
+    <script src="{% static 'js/bootstrap-table-editable.js' %}"></script>
+
+    
+
+
+
+    <!--设置表格头样式-->
+    <style>
+        .th-inner {
+            font-size: 16px; 
+            font-family:'宋体';
+            text-align:center;
+        }
+    </style>
+    <!--设置翻页字体样式-->
+    <style>
+        .pagination-info {
+            font-size: 16px; 
+            font-family:'宋体';
+        
+        }
+    </style>
+     <!--设置翻页字体样式-->
+    <style>
+        .page-list {
+            font-size: 16px; 
+            font-family:'宋体';
+        
+        }
+    </style>
+    <!--设置翻页字体样式-->
+    <style>
+        .pagination {
+            font-size: 16px; 
+            font-family:'宋体';
+        
+        }
+    </style>
+
+    <!--调整跳转按钮右边对齐 -->
+    <style>
+        .pagination-jump{
+            float:right;
+            font-size: 16px; 
+            font-family:'宋体';
+            
+        }
+    </style>
+ 
+
+
+    <!--设置a标签url样式-->
+    <style type="text/css">
+        a:link { 
+        color:#3e8f3e; 
+        text-decoration:underline; 
+        text-decoration: none
+        } 
+        a:visited { 
+        color:#3C3C3C; 
+        text-decoration:none; 
+        } 
+        a:hover { 
+        color:#FF00FF; 
+        text-decoration:none; 
+        } 
+        a:active { 
+        color:#D200D2; 
+        text-decoration:none; 
+        } 
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <h1 align=center font-family='微软雅黑'>《央媒看山东》选稿系统</h1>
+        <!--
+            <a href="#" class="logo">
+            <img src="img/logo.png" alt="Logo" />
+            </a> 
+         -->
+       
+    </header>
+    
+    <div class="container-fluid">
+    
+        <div class="dashboard-container">
+    
+            <div class="top-nav">
+            
+                <!--
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></div>
+                            列表
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="clearfix">-->
+            </div>
+        </div>
+
+            <div class="dashboard-wrapper">
+                <div class="left-sidebar" style="margin-right:0px">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="widget">
+                                <div class="widget-header">
+                                    <div class="title">
+                                        <h4 ><span style= "font-family:'微软雅黑'">请选择查询条件<a id="divTools"></a></span></h4>
+                                     
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="control-group">
+                                        
+                                        
+                                         <div class="controls controls-row">
+                                            <!--
+                                            <label class="control-label" for="DateOfBirthMonth">
+                                                文章发布日期
+
+                                            </label>
+                                            -->
+                                            <!--
+                                            <div class="cell">  换行
+                                             -->
+                                               
+                                                <!--<span style= "font-size:16px;font-family:'宋体';float:left;">发布时间：</span>  左边对齐
+                                                <input size="16" type="text" id="datetimeStart" style="float:left;" readonly class="form_datetime form-control"> -->
+
+                                                <!--<span style= "font-size:16px;font-family:'宋体';">发布时间：</span> -->
+                                                <input size="16" type="text" id="datetimeStart" style="float:left;" placeholder="请选择起始时间" readonly class="form_datetime form-control" /> 
+                                                <!--<span style= "font-size:16px;font-family:'宋体';">&nbsp;至&nbsp;</span> -->
+                                                <input size="16" type="text" id="datetimeEnd" style="float:left;margin-left:5px;" placeholder="请选择结束时间" readonly class="form_datetime form-control" />
+                                                
+                                            <!--</div>
+                                           
+                                             
+                                            <select name="ddlYear" class="btn btn-default dropdown-toggle" onchange="javascript:OnYearChange();">
+                                                <option value="0">
+                                                    - 年份 -
+                                                </option>
+                                                <option value="2021">
+                                                    2021
+                                                </option>
+                                                <option value="2022">
+                                                    2022
+                                                </option>
+                                                <option value="2023">
+                                                    2023
+                                                </option>
+                                            </select>
+                                            --> 
+                                        
+                                            <!--<span style= "font-size:16px;font-family:'宋体';float:left;">&nbsp;刊发媒体：</span>-->
+                                            <select id="ddlSource"  style="float:left;margin-left:15px;" class="btn btn-default dropdown-toggle" onchange="javascript:OnSourceChange();">
+                                                <option value="All">
+                                                    - 刊发媒体 -
+                                                </option>
+                                                <option value="人民日报">
+                                                    人民日报
+                                                </option>
+                                                <option value="人民日报海外版">
+                                                    人民日报海外版
+                                                </option>
+                                                <option value="新华社">
+                                                    新华社
+                                                </option>
+                                                <option value="新华网">
+                                                    新华网
+                                                </option>
+                                                <option value="新华每日电讯">
+                                                    新华每日电讯
+                                                </option>
+                                                <option value="新华网山东频道">
+                                                    新华网山东频道
+                                                </option>
+                                                <option value="新华社微博">
+                                                    新华社微博
+                                                </option>
+                                                <option value="中央广播电视总台">
+                                                    中央广播电视总台
+                                                </option>
+                                                <option value="央广网">
+                                                    央广网
+                                                </option>
+                                                <option value="求是">
+                                                   求是
+                                                </option>
+                                                <option value="解放军报">
+                                                    解放军报
+                                                </option>
+                                                <option value="光明日报">
+                                                   光明日报
+                                                </option>
+                                                <option value="经济日报">
+                                                    经济日报
+                                                </option>
+                                                <option value="中国日报">
+                                                    中国日报
+                                                </option>
+                                                <option value="中国日报网">
+                                                    中国日报网
+                                                </option>
+                                                <option value="科技日报">
+                                                    科技日报
+                                                </option>
+                                                <option value="人民政协报">
+                                                    人民政协报
+                                                </option>
+                                                <option value="中国纪检监察报">
+                                                    中国纪检监察报
+                                                </option>
+                                                <option value="中国新闻社">
+                                                    中国新闻社
+                                                </option>
+                                                <option value="中国新闻网">
+                                                    中国新闻网
+                                                </option>
+                                                <option value="学习时报">
+                                                    学习时报
+                                                </option>
+                                                <option value="工人日报">
+                                                    工人日报
+                                                </option>
+                                                <option value="中国青年报">
+                                                    中国青年报
+                                                </option>
+                                                <option value="中国妇女报">
+                                                    中国妇女报
+                                                </option>
+                                                <option value="农民日报">
+                                                    农民日报
+                                                </option>
+                                                <option value="法制日报">
+                                                    法制日报
+                                                </option>
+                                                <option value="半月谈">
+                                                    半月谈
+                                                </option>
+                                                <option value="中国文化报">
+                                                    中国文化报
+                                                </option>
+                                                  
+                                            </select>
+                                            
+                                            
+                                            <!--<span style= "font-size:16px;font-family:'宋体';">&nbsp;领导姓名：</span> -->
+                                            <select id="ddlSpecialname" style="float:left;margin-left:15px;"  class="btn btn-default dropdown-toggle" onchange="javascript:OnSpecialNameChange();">
+                                                <option value="All">
+                                                    - 标记 -
+                                                </option>
+                                                <option value="习近平">
+                                                    习近平
+                                                </option>
+                                                <option value="刘家义">
+                                                    刘家义
+                                                </option>
+                                                <option value="李干杰">
+                                                    李干杰
+                                                </option>                                             
+                                                                                      
+                                            </select>
+                                            
+
+                                        
+                                            <!--<span style= "font-size:16px;font-family:'宋体'">&nbsp;关键词：</span> -->
+                                            <input id="txtSearchBox" style="float:left;margin-left:15px;" placeholder="请输入关键词" type="text" >
+                                            
+                                            <button class="btn btn-primary" style="float:left;margin-left:15px;" type="button" onclick="Searchclick();">
+                                                <span style= "font-size:16px;font-family:'宋体';">搜索</span>
+                                            </button>
+                                            <button class="btn btn-primary" style="float:left;margin-left:15px;" type="button" onclick="Refresh();">
+                                                <span style= "font-size:16px;font-family:'宋体';">刷新</span>
+                                            </button>
+                                            </br>
+                                            </br>
+                                           
+                                        </div>
+                                    </div>
+                                    <!--获取搜索字段标签-->
+                                        
+                                        <div class="control-group">
+                                            <label class="control-label"></label>
+                                            <div class="controls" id="divCategory">
+                                                <button class="btn btn-info bottom-margin" type="button" onclick="Javascript:OnTextSearchButtonClick('All');">
+                                                    <span style= "font-size:16px;font-family:'宋体';">全部</span>
+                                                </button>
+                                                <button class="btn btn-info bottom-margin" type="button" onclick="Javascript:OnTextSearchButtonClick('山东省');">
+                                                    <span style= "font-size:16px;font-family:'宋体';">山东省</span>
+                                                </button>
+                                                <button class="btn btn-info bottom-margin" type="button" onclick="Javascript:OnTextSearchButtonClick('济南市');">
+                                                    <span style= "font-size:16px;font-family:'宋体';">济南市</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    <!--获取来源字段标签-->
+                                    <!--  <div class="control-group">
+                                        <label class="control-label"></label>
+                                        <div class="controls" id="divArticleSource">
+                                            <button class="btn btn-info bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-info bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-info bottom-margin" type="button">
+                                                
+                                            </button>
+                                        </div>
+                                    </div>  -->
+
+                                    <!--获取分类字段标签-->
+                                    <!--<div class="control-group">
+                                        <label class="control-label"></label>
+                                        <div class="controls" id="divCategory">
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                        </div>
+                                    </div> -->
+                                    
+                                </div>
+                            </div>
+                            <!--
+                            <div class="row-fluid">
+                            <div class="span12">
+                            <div class="widget">
+                                
+                                <div class="widget-header">
+                                
+                                    <div class="title">
+                                        关键词查询<a id="divTools"></a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="control-group">
+                                        <div class="controls controls-row">
+                                            
+                                            <label class="control-label" for="DateOfBirthMonth">
+                                            搜索
+                                            </label> 
+                                            
+                                            <input id="txtSearchBox" type="text" />
+                                            <br/>
+                                            <button class="btn btn-primary" type="button">
+                                                查询
+                                            </button>
+                                        </div>
+                            
+                                        <!--获取搜索字段标签-->
+                                        <!--
+                                        <div class="control-group">
+                                            <label class="control-label"></label>
+                                            <div class="controls" id="divCategory">
+                                                <button class="btn btn-info bottom-margin" type="button">
+                                                    
+                                                </button>
+                                                <button class="btn btn-info bottom-margin" type="button">
+                                                    
+                                                </button>
+                                                <button class="btn btn-info bottom-margin" type="button">
+                                                    
+                                                </button>
+                                                <button class="btn btn-info bottom-margin" type="button">
+                                                    
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                     </div>
+                                </div>
+                                    </div>
+                                </div> 
+                                -->
+                       
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="widget">
+                                   <!--三个分页标签-->
+                                    <div class="widget-body">
+                                        <ul class="nav nav-tabs no-margin myTabBeauty">
+                                            <li class="active">  <!--默认显示--> 
+                                              <a data-toggle="tab" href="#divNonKeyList" >
+                                              
+                                               <h4><span style= "font-family:'微软雅黑'" >非重点稿件</span></h4>
+                                                
+                                              </a>
+                                            </li>
+                                            <li class="">
+                                              <a data-toggle="tab" href="#divKeyList">
+                                               <h4><span style= "font-family:'微软雅黑'">重点稿件</span></h4>
+                                              </a>
+                                            </li>
+                                            <li class="">
+                                              <a data-toggle="tab" href="#divSelectedList">
+                                               <h4><span style= "font-family:'微软雅黑'">已选中列表</span></h4>
+                                              </a>
+                                            </li>                                            
+                                          </ul>
+                                          <div class="tab-content" id="myTabContent">
+                                            <div id="divNonKeyList" class="tab-pane fade active in"> <!--active in默认显示-->  
+                                                <!--<table class="table table-bordered" id="data-table-article"> -->
+                                                <table class="table table-bordered" id="data-table-article" style="table-layout:fixed;word-break:break-all;"> 
+                                                
+                                                </table>
+                                            </div>
+                                            <div id="divKeyList" class="tab-pane fade">
+                                                <table class="table table-bordered" id="data-table-fav" style="table-layout:fixed;word-break:break-all;">      
+                                                </table>
+                                            </div>
+                                            <div id="divSelectedList" class="tab-pane fade">
+                                                <table class="table table-bordered" id="data-table-chosen" style="table-layout:fixed;word-break:break-all;">                                              
+                                                </table>
+                                            </div>                                            
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.fluid-container-->
+        </div>
+        <footer>
+            <p>
+                &copy; 
+            </p>
+        </footer>
+
+        <!-- 编辑按钮模态框（Modal） -->
+        <input type="hidden" id="hdArticleId" />
+        <div class="modal fade" id="editRowModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="display:none">
+        <!--data-backdrop="false" 的目的是让弹出窗口不会因为点到其他地方自动关闭。style="display:none"的目的是弹出窗口在不弹出的时候不要遮挡以前窗口-->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">文章编辑窗口</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">引题：</span></td>
+                                <td><input type="text" id="txtLinkTitle" style= "font-size:15px;font-family:'宋体';width:450px"/></td>
+                            </tr>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">标题：</span></td>
+                                <td><input type="text" id="txtTitle" style= "font-size:15px;font-family:'宋体';width:450px"/></td>
+                            </tr>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">副题：</span></td>
+                                <td><input type="text" id="txtSubTitle" style= "font-size:15px;font-family:'宋体';width:450px"/></td>
+                            </tr>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">作者：</span></td>
+                                <td><input type="text" id="txtarticleAuthor" style= "font-size:15px;font-family:'宋体';"/></td>
+                            </tr>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">版面：</span></td>
+                                <td><input type="text" id="txtarticlePaperOrder" style= "font-size:15px;font-family:'宋体';"/></td>
+                            </tr>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">版名：</span></td>
+                                <td><input type="text" id="txtarticlePaperOrderName" style= "font-size:15px;font-family:'宋体';"/></td>
+                            </tr>
+                            <tr>
+                                <td><span style= "font-size:15px;font-family:'宋体';">栏目：</span></td>
+                                <td><input type="text" id="txtarticleColumn" style= "font-size:15px;font-family:'宋体';"/></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="UpdateRow()">提交更改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+</body>
+</html>

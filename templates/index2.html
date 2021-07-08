@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+
+<html class="lt-ie9 lt-ie8 lt-ie7" lang="en">
+
+<![endif]-->
+<!--[if IE 7]>
+
+<html class="lt-ie9 lt-ie8" lang="en">
+
+<![endif]-->
+<!--[if IE 8]>
+
+<html class="lt-ie9" lang="en">
+
+<![endif]-->
+<!--[if gt IE 8]>
+  <!-->
+
+{% load static %}
+<html lang="en">
+
+<!--
+<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>
+        新聞管理系統
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--[if lte IE 7]>
+    <script src="css/icomoon-font/lte-ie7.js">
+    </script>
+    <![endif]-->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet"> <!-- Important. For Theming change primary-color variable in main.css  -->
+    <link href="{% static 'css/bootstrap-table.min.css' %}" rel="stylesheet" />
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.js' %}">
+    </script>
+    <script src="{% static 'js/jquery.dataTables.js' %}">
+    </script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-table.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/Demo2/list.js' %}"></script>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="img/logo.png" alt="Logo" />
+        </a>
+    </header>
+    <div class="container-fluid">
+        <div class="dashboard-container">
+            <div class="top-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <div class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></div>
+                            列表
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix">
+                </div>
+            </div>
+
+            <div class="dashboard-wrapper">
+                <div class="left-sidebar" style="margin-right:0px">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="widget">
+                                <div class="widget-header">
+                                    <div class="title">
+                                        條件搜索<a id="divTools"></a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="control-group">
+                                        <label class="control-label" for="DateOfBirthMonth">
+                                            新聞發布日期
+                                        </label>
+                                        <div class="controls controls-row">
+                                            <select name="ddlYear" class="span2" onchange="javascript:OnYearChange();">
+                                                <option value="0">
+                                                    - 年份 -
+                                                </option>
+                                                <option value="2021">
+                                                    2021
+                                                </option>
+                                                <option value="2022">
+                                                    2022
+                                                </option>
+                                                <option value="2023">
+                                                    2023
+                                                </option>
+                                            </select>
+                                            <select id="ddlMonth" onchange="javascript:OnMonthchange();">
+                                                <option value="0">
+                                                    - 来源 -
+                                                </option>
+                                                <option value="1">
+                                                    人民日报
+                                                </option>
+                                                <option value="2">
+                                                    新华社
+                                                </option>
+                                                <option value="3">
+                                                    中央广播电视总台
+                                                </option>
+                                                <option value="4">
+                                                    央广网
+                                                </option>
+                                                <option value="5">
+                                                   求是
+                                                </option>
+                                                <option value="6">
+                                                    解放军报
+                                                </option>
+                                                <option value="7">
+                                                   光明日报
+                                                </option>
+                                                <option value="8">
+                                                    经济日报
+                                                </option>
+                                                <option value="9">
+                                                    中国日报
+                                                </option>
+                                                <option value="10">
+                                                    科技日报
+                                                </option>
+                                                <option value="11">
+                                                    人民政协报
+                                                </option>
+                                                <option value="12">
+                                                    中国纪检监察报
+                                                </option>
+                                                <option value="13">
+                                                    中国新闻社
+                                                </option>
+                                                <option value="14">
+                                                    学习时报
+                                                </option>
+                                                <option value="15">
+                                                    工人日报
+                                                </option>
+                                                <option value="16">
+                                                    中国青年报
+                                                </option>
+                                                <option value="17">
+                                                    中国妇女报
+                                                </option>
+                                                <option value="18">
+                                                    农民日报
+                                                </option>
+                                                <option value="19">
+                                                    法制日报
+                                                </option>
+                                                <option value="20">
+                                                    半月谈
+                                                </option>
+                                                <option value="21">
+                                                    中国文化报
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label"></label>
+                                        <div class="controls" id="divArticleSource">
+                                            <button class="btn btn-info bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-info bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-info bottom-margin" type="button">
+                                                
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label"></label>
+                                        <div class="controls" id="divCategory">
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                            <button class="btn btn-warning bottom-margin" type="button">
+                                                
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                       
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="widget">
+                                    <div class="widget-header">
+                                        <div class="title">
+                                            非重点稿件列表<a id="dynamicTable"></a>
+                                        </div>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div id="dt_example_2" class="example_alt_pagination">
+
+                                            <table class="table table-bordered" id="data-table-article">
+                                                
+                                            </table>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.fluid-container-->
+        </div>
+        <footer>
+            <p>
+                &copy; XXXX 2021
+            </p>
+        </footer>
+        
+</body>
+</html>
